@@ -1,0 +1,13 @@
+#nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: baseline;
+  background-color: #003459;
+  opacity: 0.8;
+}
+
+.nav-content {
+  color: #F9F8F8;
+  margin: 20px;
+}
