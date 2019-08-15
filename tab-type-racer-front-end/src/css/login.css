@@ -1,0 +1,40 @@
+#login {
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 120px;
+  top: 35%;
+  left: 35%;
+  background-color: #003459;
+  width: 30%;
+  height: 450px;
+  opacity: 0.8;
+}
+
+#login-form {
+  width: 80%;
+  height: 50%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-box {
+  position: center;
+  background-color: #F9F8F8;
+  margin: 2px;
+  width: 50%;
+  height: 30%;
+}
+
+#button {
+  background-color: #EEC643;
+  opacity: 0.8;
+}
+
+#signup {
+  color: #F9F8F8;
+}
