@@ -4,7 +4,7 @@ export default class TestComponent extends React.Component {
     state={data: null}
     componentDidMount(){
         
-        fetch('Dracula.txt')
+        fetch('PeterPan.txt')
         .then(response => response.text())
         .then(text => {
             //text = text.replace(/\n/ig, '');
@@ -24,16 +24,19 @@ export default class TestComponent extends React.Component {
                 }
             }
             console.log(coolArray)
-            for(let i = 0;i < coolArray.length; i++){
-                fetch("http://localhost:7777/challenges",{
-                    method: 'POST',
-                    headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify({
-                        paragraph: coolArray[i],
-                        category: "Dracula"
-                    })
-                })
-            }
+            //ALREADY RUN - Dracula - Peter Pan
+            // for(let i = 0;i < coolArray.length; i++){
+            //     fetch("http://localhost:7777/challenges",{
+            //         method: 'POST',
+            //         headers: {"Content-Type": "application/json"},
+            //         body: JSON.stringify({
+            //             paragraph: coolArray[i],
+            //             category: "Peter Pan"
+            //         })
+            //     })
+            //     .then(res => res.json())
+            //     .then(data => console.log(data))
+            // }
         })
 
 
