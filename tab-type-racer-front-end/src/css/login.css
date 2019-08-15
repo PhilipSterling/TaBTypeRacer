@@ -28,13 +28,43 @@
   margin: 2px;
   width: 50%;
   height: 30%;
+  font-size: 15px;
 }
 
 #button {
   background-color: #EEC643;
   opacity: 0.8;
+  font-size: 15px;
 }
 
 #signup {
   color: #F9F8F8;
+}
+
+@media only screen and (max-width: 414px) {
+  #login {
+    top: 25%;
+    left: 10%;
+    width: 80%;
+    height: 50%;
+  }
+  #login-form {
+    margin: 10px;
+  }
+  .input-box {
+    position: center;
+    background-color: #F9F8F8;
+    padding: 5px;
+    width: 70%;
+    height: 50%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  #login {
+    top: 25%;
+    left: 10%;
+    width: 80%;
+    height: 50%;
+  }
 }
