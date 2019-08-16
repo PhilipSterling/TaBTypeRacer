@@ -1,13 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Handlee&display=swap');
 #profile-container {
   width: 100vw;
   height: 100vh;
+  color: #EEC643;
+  font-family: 'Handlee', cursive;
 }
 
 .profile-container2 {
   width: 100vw;
   height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  font-family: 'Handlee', cursive;
+}
+
+.profile {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #134611;
+  opacity: 0.9;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.history {
+  background-color: #12458F;
+  padding: 10px;
+  opacity: 0.9;
+  margin-top: -200px;
+  font-size: 15px;
+  border-radius: 3px;
+}
+
+@media (min-width: 414px) {
+  .profile-container2 {
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+  .profile {
+    width: 30%;
+    margin-top: 100px;
+  }
+  .history {
+    margin-top: 0;
+    margin-top: 100px;
+  }
 }
