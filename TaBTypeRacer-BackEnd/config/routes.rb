@@ -3,6 +3,6 @@ Rails.application.routes.draw do
       post '/login', to: 'auth#create'
       get '/profile', to: 'users#profile'
   resources :games
+      get '/challenges/random', to: 'challenges#achall'
   resources :challenges
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

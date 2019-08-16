@@ -43,7 +43,12 @@ class Login extends React.Component {
         <div id="login">
           {this.state.failedLogin ? <p>HAO REDO THIS LOGIN ERROR</p> : null}
           <form id="login-form" onSubmit={this.handleSubmit}>
-            <input name="username" className="input-box" type="text" placeholder="name" />
+            <input 
+            name="username" 
+            className="input-box" 
+            type="text" 
+            placeholder="name" 
+            />
             <br />
             <input
               name="password"
