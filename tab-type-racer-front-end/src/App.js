@@ -1,24 +1,29 @@
-import React from 'react';
-import Login from './Login';
+import React from "react";
+import Login from "./Login";
 import Signup from "./components/Signup";
-import HomePage from './components/HomePage';
+import HomePage from "./components/HomePage";
 import Profile from "./components/Profile";
 import GamePageContainer from "./containers/GamePageContainer";
+import GameContainer from "./containers/GameContainer";
 import Nav from "./containers/Nav";
-import './App.css';
-import {BrowserRouter as Router, Route, Link, NavLink} from 'react-router-dom'
-
+import "./App.css";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  NavLink
+} from "react-router-dom";
 
 class App extends React.Component {
-
-  render () {
+  render() {
     return (
-      <div>
+      <div className="app bg">
         <Router>
           <Route path="/" component={HomePage} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <Route path="/game" component={GamePageContainer} />
+          <Route path="/game/new" component={GameContainer} />
           <Route path="/profile" component={Profile} />
         </Router>
       </div>
