@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
  
   def create
-    @user = User.create(user_params)
+    @user = User.create(username: params[:username], password: params[:password], avatar: params[:avatar])
     if @user.valid?
       @token = encode_token({ user_id: @user.id })
       render json: { user: UserSerializer.new(@user), jwt: @token }, status: :created
@@ -18,6 +18,6 @@ class UsersController < ApplicationController
   private
  
   def user_params
-    params.require(:user).permit(:username, :password, :avatar)
+    params.require(:user).permit(:username, :password_digest, :avatar)
   end
 end
