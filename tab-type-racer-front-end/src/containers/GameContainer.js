@@ -6,6 +6,7 @@ class GameContainer extends React.Component {
   constructor () {
     super()
     this.state={
+      challengeID: '',
       challenge: '',
       input: '',
       index: null,
