@@ -22,8 +22,8 @@ class App extends React.Component {
           <Route path="/" component={HomePage} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-          <Route path="/game" component={GamePageContainer} />
-          <Route path="/game/new" component={GameContainer} />
+          <Route exact path="/game" component={GamePageContainer} />
+          <Route path="/newgame" component={GameContainer} />
           <Route path="/profile" component={Profile} />
         </Router>
       </div>

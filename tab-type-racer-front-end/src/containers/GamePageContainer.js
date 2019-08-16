@@ -25,7 +25,7 @@ class GamePageContainer extends React.Component {
       <div className="game-container">
         <Nav />
         <div id="select-container">
-        {this.state.renderGame ? <Redirect to="/game/new" />
+        {this.state.renderGame ? <Redirect to="/newgame" />
 : <GameSelectContainer handleNewGameClick={this.handleNewGameClick}/>}
         </div>      
       </div>

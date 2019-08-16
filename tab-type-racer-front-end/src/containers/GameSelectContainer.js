@@ -4,7 +4,7 @@ import '../css/gameselectcontainer.css'
 class GameSelectContainer extends React.Component {
   render() {
     return (
-      <div id="container">
+      <div id="select-container2">
         <h2 className="selection" onClick={null}>
           1 Player
         </h2>

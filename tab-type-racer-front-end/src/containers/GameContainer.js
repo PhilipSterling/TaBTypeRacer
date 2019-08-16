@@ -5,7 +5,10 @@ import "../css/gamecontainer.css";
 class GameContainer extends React.Component {
   render() {
     return (
-      <div id="container">
+      <div id="newgame-container">
+        <Nav />
+        <div className="newgame-container2">
+        </div>
       </div>
     );
   }
