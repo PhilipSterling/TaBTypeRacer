@@ -5,15 +5,15 @@ class GameSelectContainer extends React.Component {
   render() {
     return (
       <div id="select-container2">
-        <h2 className="selection" onClick={null}>
+        <h2 className="selection" onClick={this.props.handleNewGameClick}>
           1 Player
         </h2>
         <h2 className="selection" onClick={null}>
-          2 Player
+          Host Room
         </h2>
-        <button onClick={this.props.handleNewGameClick}>
-          Start Game
-        </button>
+        <h2 className="selection" onClick={null}>
+          Enter Room
+        </h2>
       </div>
     );
   }
