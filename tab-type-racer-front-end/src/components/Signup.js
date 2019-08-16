@@ -6,28 +6,37 @@ class Signup extends React.Component {
   constructor () {
     super()
     this.state={
-      avatar: '',
+      userAlreadyExists: false,
+      avatar: 'https://www.itsfun.com.tw/cacheimg/fd/75/fba384a3d3aeb2f641545f3eaec0.jpg',
       addClassName: true
     }
   }
 
-  // handleClick = (e) => {
-  //   const name = e.target.name;
-  //   const password = e.target.password;
-  //   fetch("http://localhost:3000/users", {
-  //     method: "POST",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify({ 
-  //       name: name,
-  //       password: password,
-  //       avatar: this.state.avatar
-  //     })
-  //   }).then(resp => resp.json())
-  //     .then(data => console.log(data))
-  // }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const password = e.target.password.value;
+    fetch("http://localhost:7777/users", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ 
+        username: name,
+        password: password,
+        avatar: this.state.avatar
+      })
+    }).then(resp => resp.json())
+      .then(data => {
+        if(data.error != undefined) {
+          this.setState({userAlreadyExists:true})
+        } else {
+          localStorage.setItem('jwt', data.jwt)
+          this.props.history.push("/game");
+        }
+      })
+  }
 
   handleAvatarClick = (e) => {
     const avatar = e.target.src;
@@ -43,7 +52,8 @@ class Signup extends React.Component {
     return (
       <div className="signup-container">
         <div id="signup">
-          <form id="signup-form" onClick={this.handleClick}>
+          {this.state.userAlreadyExists ? <p>HAO REDO THIS CREATE ERROR</p> : null}
+          <form id="signup-form" onSubmit={this.handleSubmit}>
             <input
               className="input-box"
               type="text"
