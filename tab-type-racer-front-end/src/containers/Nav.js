@@ -9,6 +9,9 @@ class Nav extends React.Component {
         <Link className="nav-content" to="/profile">
           Profile
         </Link>
+        <Link className="nav-content" to="/game">
+          New Game
+        </Link>
         <h4 className="nav-content" onClick={null}>
           log out
         </h4>

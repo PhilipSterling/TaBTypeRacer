@@ -6,7 +6,8 @@ class Signup extends React.Component {
   constructor () {
     super()
     this.state={
-      avatar: ''
+      avatar: '',
+      addClassName: true
     }
   }
 
@@ -30,30 +31,55 @@ class Signup extends React.Component {
 
   handleAvatarClick = (e) => {
     const avatar = e.target.src;
-    this.setState({avatar})
+    if (e.target.className === "avatar") {
+      this.setState({
+        avatar: avatar,
+        addClassName: !this.state.addClassName
+      })
+    }
   }
 
   render () {
     return (
-      <div>
-        <form onClick={this.handleClick}>
-          <input type="text" name="name" placeholder="name"/>
-          <br />
-          <input type="password" name="password" placeholder="password" />
-          <br />
-          <img
-            className="avatar"
-            src="https://www.itsfun.com.tw/cacheimg/fd/75/fba384a3d3aeb2f641545f3eaec0.jpg"
-            onClick={this.handleAvatarClick}
-          />
-          <img
-            className="avatar"
-            src="https://s3-eu-west-1.amazonaws.com/thinglink/avatars/Ah/4efc1uQX8o2dFdrALBv4sDDfzR9YFmDRWJnEZ1xmXmAh.jpeg"
-            onClick={this.handleAvatarClick}
-          />
-          <br />
-          <input type="submit" value="Sign Up" />
-        </form>
+      <div className="signup-container">
+        <div id="signup">
+          <form id="signup-form" onClick={this.handleClick}>
+            <input
+              className="input-box"
+              type="text"
+              name="name"
+              placeholder="name"
+            />
+            <br />
+            <input
+              className="input-box"
+              type="password"
+              name="password"
+              placeholder="password"
+            />
+            <br />
+            <label>Choose Avatar:</label>
+            <div id="avatar-container">
+              <img
+                className={this.state.addClassName? "avatar add" : "avatar"}
+                src="https://www.itsfun.com.tw/cacheimg/fd/75/fba384a3d3aeb2f641545f3eaec0.jpg"
+                onClick={this.handleAvatarClick}
+              />
+              <img
+                className={!this.state.addClassName? "avatar add" : "avatar"}
+                src="https://s3-eu-west-1.amazonaws.com/thinglink/avatars/Ah/4efc1uQX8o2dFdrALBv4sDDfzR9YFmDRWJnEZ1xmXmAh.jpeg"
+                onClick={this.handleAvatarClick}
+              />
+            </div>
+            <br />
+            <input
+              id="button"
+              className="input-box"
+              type="submit"
+              value="Sign Up"
+            />
+          </form>
+        </div>
       </div>
     );
   }
