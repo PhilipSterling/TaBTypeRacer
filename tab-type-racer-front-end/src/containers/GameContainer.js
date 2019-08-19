@@ -7,10 +7,12 @@ class GameContainer extends React.Component {
     super()
     this.state={
       challengeID: '',
+      challengeCategory: '',
       challenge: '',
       input: '',
       index: null,
-      characAt: ""
+      characAt: "",
+      allWords: [],
     }
   }
 
@@ -22,20 +24,40 @@ class GameContainer extends React.Component {
       }
     })
     .then(res => res.json())
-    .then(data => this.setState({
+    .then(data => {this.setState({
+      challengeID: data.id,
+      challengeCategory: data.category,
       challenge: data.paragraph,
-    }))
+      allWords: data.paragraph.split(" "),
+    })
+  })
   }
 
   handleChange = (e) => {
-    const input = e.target.value
+    let input = e.target.value
     let index = input.length -1
+    if(input == this.state.allWords[0] + " "){
+      this.state.allWords.shift()
+      this.setState({allWords: this.state.allWords,
+      })
+      input = ""
+      index = 0
+    }
     this.setState({
       input,
       index,
       characAt: this.state.challenge.charAt(index)
     })
+    if(this.state.allWords[0] === undefined){
+      this.finishGame()
+    }
   }
+
+  finishGame = () => {
+    console.log("ashdojabhwdkjhawkudhakwhdkhawgdkjahwdkgawjdhakjwbdkjawbdkuabwkjhdbawkjd")
+    
+  }
+
 
   handleSubmit = (e) => {
     e.preventDefault()
