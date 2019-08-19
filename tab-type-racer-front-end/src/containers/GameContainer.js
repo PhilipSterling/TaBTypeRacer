@@ -10,7 +10,8 @@ class GameContainer extends React.Component {
       challenge: '',
       input: '',
       index: null,
-      characAt: ""
+      characAt: "",
+      finished: false
     }
   }
 
@@ -53,13 +54,20 @@ class GameContainer extends React.Component {
     return (
       <div id="newgame-container">
         <Nav user={this.props.location.state.user} />
+
         <div className="newgame-container2">
-          <label>Category: </label>
-          <select className="category" onChange={this.handleCategoryChange}>
-            <option value="all">All</option>
-            <option value="dragon">Dragon</option>
-            <option value="peterpan">Peter Pan</option>
-          </select>
+          <div className="category-container">
+            <label>Category: </label>
+            <select
+              className="category"
+              onChange={this.handleCategoryChange}
+            >
+              <option value="all">All</option>
+              <option value="dragon">Dragon</option>
+              <option value="peterpan">Peter Pan</option>
+            </select>
+            <button className="start-button">Start</button>
+          </div>
           <div className="newgame-container3">
             <div className="percentage-container">
               <img
@@ -78,6 +86,15 @@ class GameContainer extends React.Component {
               />
             </form>
           </div>
+        </div>
+
+        {/*pop up component */}
+        <div
+          style={{
+            visibility: this.state.finished ? "visible" : "hidden"
+          }}
+          className="popup"
+        >
         </div>
       </div>
     );
