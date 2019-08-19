@@ -95,6 +95,9 @@ class GameContainer extends React.Component {
           }}
           className="popup"
         >
+          <img className="goodjob" src="https://media.giphy.com/media/3o7abGQa0aRJUurpII/giphy.gif" />
+          <h3>Good Job! {this.props.location.state.user.username}</h3>
+          <h3>You speed is:</h3>
         </div>
       </div>
     );
