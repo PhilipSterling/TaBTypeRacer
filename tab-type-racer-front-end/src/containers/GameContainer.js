@@ -14,18 +14,18 @@ class GameContainer extends React.Component {
     }
   }
 
-  componentDidMount = () => {
-    fetch('http://localhost:7777/challenges/random', {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
-      }
-    })
-    .then(res => res.json())
-    .then(data => this.setState({
-      challenge: data.paragraph,
-    }))
-  }
+  // componentDidMount = () => {
+  //   fetch('http://localhost:7777/challenges/random', {
+  //     method: 'GET',
+  //     headers: {
+  //       Authorization: `Bearer ${localStorage.getItem('jwt')}`
+  //     }
+  //   })
+  //   .then(res => res.json())
+  //   .then(data => this.setState({
+  //     challenge: data.paragraph,
+  //   }))
+  // }
 
   handleChange = (e) => {
     const input = e.target.value
@@ -33,7 +33,8 @@ class GameContainer extends React.Component {
     this.setState({
       input,
       index,
-      characAt: this.state.challenge.charAt(index)
+      characAt: this.state.challenge.charAt(index),
+      percentage: input.length
     })
   }
 
@@ -41,15 +42,40 @@ class GameContainer extends React.Component {
     e.preventDefault()
   }
 
+  handleCategoryChange = (e) => {
+    console.log(e.target.value);
+    //render paragraph based on the selected category, default paragraphs from all category
+  }
+
   render() {
+    //percentage finished of the paragraph
+    const width = this.state.percentage + "%";
     return (
       <div id="newgame-container">
-        <Nav />
+        <Nav user={this.props.location.state.user} />
         <div className="newgame-container2">
+          <label>Category: </label>
+          <select className="category" onChange={this.handleCategoryChange}>
+            <option value="all">All</option>
+            <option value="dragon">Dragon</option>
+            <option value="peterpan">Peter Pan</option>
+          </select>
           <div className="newgame-container3">
-            <form onSubmit={this.handleSubmit}>
-              <p>{this.state.challenge}</p>
-              <input type="text" onChange={this.handleChange} value={this.state.input}/>
+            <div className="percentage-container">
+              <img
+                className="avatar-image"
+                style={{ marginLeft: width }}
+                src={this.props.location.state.user.avatar}
+              />
+            </div>
+            <form className="inputcontainer" onSubmit={this.handleSubmit}>
+              {/* <p>{this.state.challenge}</p> */}
+              <input
+                className="typeinput"
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.input}
+              />
             </form>
           </div>
         </div>

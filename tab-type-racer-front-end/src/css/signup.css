@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Handlee|Hind+Siliguri&display=swap');
 .signup-container {
   width: 100vw;
   height: 100vh;
@@ -51,6 +52,16 @@
 
 .avatar:hover {
   border: orange solid 3px;
+}
+
+.link {
+  color: white;
+  font-family: 'Hind Siliguri', sans-serif;
+}
+
+.signup-error {
+  color: red;
+  font-family: 'Hind Siliguri', sans-serif;
 }
 
 @media (min-width: 414px) {
