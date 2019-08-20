@@ -15,8 +15,8 @@ class Profile extends React.Component {
   }
 
   componentDidMount = () => {
-    //fetch challenge data here
-    // fetch(/*games API*/)
+    //fetch games data here
+    // fetch("http://localhost:7777/games")
     // .then(resp => resp.json())
     // .then(data => {
     //   this.setState({
@@ -49,18 +49,17 @@ class Profile extends React.Component {
                   <th>Category</th>
                 </tr>
                 {/* map challenges into table tag: date - typespeed - percentage - category*/}
-                <tr>
-                  <th>08/16/2019</th>
-                  <th>100wpm</th>
-                  <th>95%</th>
-                  <th>dragon</th>
-                </tr>
-                <tr>
-                  <th>08/16/2019</th>
-                  <th>80wpm</th>
-                  <th>55%</th>
-                  <th>dragon</th>
-                </tr>
+                {this.state.games.map(game => {
+                  return (
+                    <tr>
+                      <th>{game.created_at}</th>
+                      <th>100wpm</th>
+                      <th>{game.percentage}</th>
+                      <th>{game.category}</th>
+                    </tr>
+                  );
+                  })
+                }
               </tbody>
             </table>
           </div>
