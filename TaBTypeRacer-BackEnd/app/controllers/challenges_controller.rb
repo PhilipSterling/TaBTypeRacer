@@ -16,8 +16,16 @@ class ChallengesController < ApplicationController
     end
 
     def achall 
+        chosencategory = request.headers['categoryheader']
         @challenges = Challenge.all
+
+        if chosencategory == "peterpan" 
+            @challenges = @challenges.select {|challenge|challenge.category == "Peter Pan"}
+        elsif chosencategory == "dracula" 
+            @challenges = @challenges.select {|challenge|challenge.category == "Dracula"}
+        end
         render json: @challenges.sample
+
     end
 
     private
