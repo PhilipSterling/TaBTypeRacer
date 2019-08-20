@@ -14,9 +14,64 @@
 
 .newgame-container3 {
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: #134611;
-  opacity: 0.9;
+  opacity: 0.97;
   width: 60%;
   height: 60%;
   border-radius: 2px;
+}
+
+.category {
+  width: 100px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.test {
+  background-color: yellow;
+  height: 50px;
+}
+
+.percentage-container {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-bottom: 5px solid #db800f;
+  padding: 10px;
+}
+
+.avatar-image {
+  border-radius: 25px;
+  height: 40px;
+  width: 40px;
+}
+
+.typeinput {
+  font-size: 20px;
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.inputcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  color: white;
+}
+
+p {
+  font-size: 20px;
+}
+
+@media (max-width: 414px) {
+  .newgame-container3 {
+    width: 90%;
+  }
 }

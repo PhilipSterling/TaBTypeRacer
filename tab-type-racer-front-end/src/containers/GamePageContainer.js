@@ -21,13 +21,25 @@ class GamePageContainer extends React.Component {
   }
 
   render() {
+    // {console.log(this.props.location.state.user)}
     return (
       <div className="game-container">
-        <Nav />
+        <Nav user={this.props.location.state.user} />
         <div id="select-container">
-        {this.state.renderGame ? <Redirect to="/newgame" />
-: <GameSelectContainer handleNewGameClick={this.handleNewGameClick}/>}
-        </div>      
+          {this.state.renderGame ? (
+            <Redirect
+              to={{
+                pathname: "/newgame",
+                state: { user: this.props.location.state.user }
+              }}
+            />
+          ) : (
+            <GameSelectContainer
+              user={this.props.location.state.user}
+              handleNewGameClick={this.handleNewGameClick}
+            />
+          )}
+        </div>
       </div>
     );
   }

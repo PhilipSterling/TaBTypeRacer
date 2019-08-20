@@ -32,7 +32,13 @@ class Login extends React.Component {
         this.setState({failedLogin: true})
       } else {
         localStorage.setItem('jwt', data.jwt)
-        this.props.history.push("/game");
+        this.props.history.push({
+          pathname: "/game",
+          state: { user: data.user }
+        });
+        // this.setState({
+        //   user: data.user
+        // })
       }
     })
   }
@@ -41,7 +47,7 @@ class Login extends React.Component {
     return (
       <div className="login-container">
         <div id="login">
-          {this.state.failedLogin ? <p>HAO REDO THIS LOGIN ERROR</p> : null}
+          {this.state.failedLogin ? <p className="login-error">User name doesn't match your password</p> : null}
           <form id="login-form" onSubmit={this.handleSubmit}>
             <input 
             name="username" 

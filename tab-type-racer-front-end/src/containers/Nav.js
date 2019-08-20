@@ -15,16 +15,25 @@ class Nav extends React.Component {
   render() {
     return (
       <div id="nav">
-        <Link className="nav-content" to="/profile">
+        <Link
+          className="nav-content"
+          to={{
+            pathname: "/profile",
+            state: { user: this.props.user}
+          }}
+        >
           Profile
         </Link>
-        <Link className="nav-content" to="/game">
+        <Link className="nav-content" to={{
+            pathname: "/game",
+            state: { user: this.props.user}
+          }}>
           New Game
         </Link>
         <h4 className="nav-content" onClick={this.handleLogout}>
           Logout
         </h4>
-          {this.state.logout ? <Redirect to="/login" /> : null}
+        {this.state.logout ? <Redirect to="/login" /> : null}
       </div>
     );
   }

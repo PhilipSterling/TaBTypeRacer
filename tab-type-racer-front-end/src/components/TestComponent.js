@@ -4,7 +4,7 @@ export default class TestComponent extends React.Component {
     state={data: null}
     componentDidMount(){
         
-        fetch('Dracula.txt')
+        fetch('PeterPan.txt')
         .then(response => response.text())
         .then(text => {
             //text = text.replace(/\n/ig, '');
@@ -33,7 +33,7 @@ export default class TestComponent extends React.Component {
             //         Authorization: `Bearer ${localStorage.getItem('jwt')}`   },
             //         body: JSON.stringify({
             //             paragraph: coolArray[i],
-            //             category: "Dracula"
+            //             category: "Peter Pan"
             //         })
             //     })
             //     .then(res => res.json())

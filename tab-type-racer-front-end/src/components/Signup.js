@@ -1,5 +1,6 @@
 import React from 'react';
-import '../css/signup.css'
+import '../css/signup.css';
+import { Link } from "react-router-dom";
 
 
 class Signup extends React.Component {
@@ -33,7 +34,10 @@ class Signup extends React.Component {
           this.setState({userAlreadyExists:true})
         } else {
           localStorage.setItem('jwt', data.jwt)
-          this.props.history.push("/game");
+          this.props.history.push({
+            pathname: "/game",
+            state: { user: data.user }
+          });
         }
       })
   }
@@ -52,7 +56,7 @@ class Signup extends React.Component {
     return (
       <div className="signup-container">
         <div id="signup">
-          {this.state.userAlreadyExists ? <p>HAO REDO THIS CREATE ERROR</p> : null}
+          {this.state.userAlreadyExists ? <p className="signup-error" >user name already exist</p> : null}
           <form id="signup-form" onSubmit={this.handleSubmit}>
             <input
               className="input-box"
@@ -89,6 +93,7 @@ class Signup extends React.Component {
               value="Sign Up"
             />
           </form>
+          <Link className="link" to='/login'>back to login?</Link>
         </div>
       </div>
     );

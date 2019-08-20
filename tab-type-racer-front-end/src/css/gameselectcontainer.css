@@ -9,6 +9,7 @@
   width: 70%;
   height: 40%;
   padding: 10px;
+  /* opacity: 0.9; */
 }
 
 .selection {
@@ -16,8 +17,9 @@
   width: 80%;
   height: 18%;
   background-color: #EEC643;
-  opacity: 0.8;
+  opacity: 1;
   border-radius: 3px;
+  cursor: pointer;
 }
 
 .selection:hover {
@@ -29,18 +31,34 @@ button {
   background-color: white;
 }
 
+.info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.image {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  margin-right: 8px;
+}
+
+h3 {
+  color: #f9f8f8ed;
+}
+
 @media (min-width: 414px) {
   #select-container2 {
     width: 40%;
     height: 40%;
   }
-
   button {
     height: 10%;
     width: 25%;
   }
-
   .selection {
     height: 15%;
+    padding-top: 15px;
   }
 }
