@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from './Nav';
 import "../css/gamecontainer.css";
+import { Route, Redirect} from 'react-router'
 
 class GameContainer extends React.Component {
   constructor () {
@@ -19,7 +20,8 @@ class GameContainer extends React.Component {
       percentage: 0,
       errorNumber: 0,
       wordFlag: false,
-      finished: false
+      finished: false,
+      newGame: false
     }
   }
 
@@ -32,11 +34,11 @@ class GameContainer extends React.Component {
     })
     .then(res => res.json())
     .then(data => {this.setState({
-      challengeID: data.id,
-      challengeCategory: data.category,
-      challenge: data.paragraph,
-      allWords: data.paragraph.split(" "),
-      numAllWords: data.paragraph.split(" ").length,
+      // challengeID: data.id,
+      // challengeCategory: data.category,
+      // challenge: data.paragraph,
+      // allWords: data.paragraph.split(" "),
+      // numAllWords: data.paragraph.split(" ").length,
     })
   })
   }
@@ -56,24 +58,24 @@ class GameContainer extends React.Component {
       }
     }
     if(this.state.allWords[0] !==  undefined){
-    if(input == this.state.allWords[0] + " "){
-      this.state.allWords.shift()
-      percentage = Math.floor(((this.state.numAllWords - this.state.allWords.length) / this.state.numAllWords) * 104)
-      console.log(percentage)
-      this.setState({allWords: this.state.allWords,
-        wordFlag: false,
+      if(input == this.state.allWords[0] + " "){
+        this.state.allWords.shift()
+        percentage = Math.floor(((this.state.numAllWords - this.state.allWords.length) / this.state.numAllWords) * 104)
+        console.log(percentage)
+        this.setState({allWords: this.state.allWords,
+          wordFlag: false,
+        })
+        input = ""
+        index = 0
+      }
+      if(this.state.allWords[0] !== undefined){
+      this.setState({
+        input,
+        index,
+        characAt: this.state.allWords[0].charAt(index),
+        percentage
       })
-      input = ""
-      index = 0
     }
-    if(this.state.allWords[0] !== undefined){
-    this.setState({
-      input,
-      index,
-      characAt: this.state.allWords[0].charAt(index),
-      percentage
-    })
-  }
     } else {
       this.finishGame()
     }
@@ -112,6 +114,12 @@ class GameContainer extends React.Component {
     //render paragraph based on the selected category, default paragraphs from all category
   }
 
+  handleNewgame = () => {
+    this.setState({
+      newGame: true
+    })
+  }
+
   render() {
     //percentage finished of the paragraph
     const width = (this.state.percentage - 7) + "%";
@@ -120,7 +128,6 @@ class GameContainer extends React.Component {
         <Nav user={this.props.location.state.user} />
 
         <div className="newgame-container2">
-
           <div className="category-container">
             <label>Category: </label>
             <select
@@ -142,7 +149,7 @@ class GameContainer extends React.Component {
               />
             </div>
             <form className="inputcontainer" onSubmit={this.handleSubmit}>
-              {<p>{this.state.challenge}</p> }
+              {<p>{this.state.challenge}</p>}
               <input
                 className="typeinput"
                 type="text"
@@ -160,9 +167,23 @@ class GameContainer extends React.Component {
           }}
           className="popup"
         >
-          <img className="goodjob" src="https://media.giphy.com/media/3o7abGQa0aRJUurpII/giphy.gif" />
-          <h3>Good Job! {this.props.location.state.user.username}</h3>
-          <h3>You speed is:</h3>
+          <img
+            className="goodjob"
+            src="https://media.giphy.com/media/3o7abGQa0aRJUurpII/giphy.gif"
+          />
+          <h3 className="font">Good Job! {this.props.location.state.user.username}</h3>
+          <h3 className="font">Your speed is:</h3>
+          <button className="newgame-button" onClick={this.handleNewgame}>
+            New Game
+          </button>
+          {this.state.newGame ? (
+            <Redirect
+              to={{
+                pathname: "/game",
+                state: { user: this.props.location.state.user }
+              }}
+            />
+          ) : null}
         </div>
       </div>
     );

@@ -44,7 +44,7 @@ class Profile extends React.Component {
               <tbody>
                 <tr>
                   <th>Date</th>
-                  <th>Type Speed</th>
+                  <th>Type-Speed</th>
                   <th>Accuracy</th>
                   <th>Category</th>
                 </tr>
@@ -52,8 +52,8 @@ class Profile extends React.Component {
                 {this.state.games.map(game => {
                   return (
                     <tr>
-                      <th>{game.created_at}</th>
-                      <th>100wpm</th>
+                      <th>{game.starttime}</th>
+                      <th>{game.wpm}</th>
                       <th>{game.percentage}</th>
                       <th>{game.category}</th>
                     </tr>

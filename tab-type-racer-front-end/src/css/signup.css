@@ -62,6 +62,7 @@
 .signup-error {
   color: red;
   font-family: 'Hind Siliguri', sans-serif;
+  font-size: 16px;
 }
 
 @media (min-width: 414px) {
