@@ -7,37 +7,101 @@ class GameContainer extends React.Component {
     super()
     this.state={
       challengeID: '',
+      challengeCategory: '',
       challenge: '',
       input: '',
       index: null,
       characAt: "",
+
+      allWords: [],
+      numAllWords: 0,
+      game_id: undefined,
+      percentage: 0,
+      errorNumber: 0,
+      wordFlag: false,
       finished: false
     }
   }
 
-  // componentDidMount = () => {
-  //   fetch('http://localhost:7777/challenges/random', {
-  //     method: 'GET',
-  //     headers: {
-  //       Authorization: `Bearer ${localStorage.getItem('jwt')}`
-  //     }
-  //   })
-  //   .then(res => res.json())
-  //   .then(data => this.setState({
-  //     challenge: data.paragraph,
-  //   }))
-  // }
+  componentDidMount = () => {
+    fetch('http://localhost:7777/challenges/random', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+      }
+    })
+    .then(res => res.json())
+    .then(data => {this.setState({
+      challengeID: data.id,
+      challengeCategory: data.category,
+      challenge: data.paragraph,
+      allWords: data.paragraph.split(" "),
+      numAllWords: data.paragraph.split(" ").length,
+    })
+  })
+  }
+
 
   handleChange = (e) => {
-    const input = e.target.value
+    let percentage = this.state.percentage
+    let input = e.target.value
     let index = input.length -1
+    if(index !== -1){
+      if(input != ""){
+        if(this.state.allWords[0].charAt(index) != input.charAt(input.length-1)) {
+          if(!this.state.wordFlag){
+          this.setState({errorNumber: ++this.state.errorNumber,
+          wordFlag: true})}
+        }
+      }
+    }
+    if(this.state.allWords[0] !==  undefined){
+    if(input == this.state.allWords[0] + " "){
+      this.state.allWords.shift()
+      percentage = Math.floor(((this.state.numAllWords - this.state.allWords.length) / this.state.numAllWords) * 104)
+      console.log(percentage)
+      this.setState({allWords: this.state.allWords,
+        wordFlag: false,
+      })
+      input = ""
+      index = 0
+    }
+    if(this.state.allWords[0] !== undefined){
     this.setState({
       input,
       index,
-      characAt: this.state.challenge.charAt(index),
-      percentage: input.length
+      characAt: this.state.allWords[0].charAt(index),
+      percentage
     })
   }
+    } else {
+      this.finishGame()
+    }
+  }
+
+  finishGame = () => {
+    this.setState({input: ""})
+    fetch(`http://localhost/7777/games/${this.state.game_id}`, {
+      method: 'PATCH',
+      headers: {"Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem('jwt')}`
+    },
+    body: JSON.stringify({
+      endtime: Date.now(),
+    })
+    })
+    .then(res => res.json())
+    .then(data => {
+      fetch(`http://localhost/7777/games/${this.state.game_id}`, {
+        method: 'PATCH',
+        headers: {"Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`},
+        body: JSON.stringify({
+        })
+      })
+    })
+  }
+
 
   handleSubmit = (e) => {
     e.preventDefault()
@@ -50,12 +114,13 @@ class GameContainer extends React.Component {
 
   render() {
     //percentage finished of the paragraph
-    const width = this.state.percentage + "%";
+    const width = (this.state.percentage - 7) + "%";
     return (
       <div id="newgame-container">
         <Nav user={this.props.location.state.user} />
 
         <div className="newgame-container2">
+
           <div className="category-container">
             <label>Category: </label>
             <select
@@ -63,7 +128,7 @@ class GameContainer extends React.Component {
               onChange={this.handleCategoryChange}
             >
               <option value="all">All</option>
-              <option value="dragon">Dragon</option>
+              <option value="dracula">Dracula</option>
               <option value="peterpan">Peter Pan</option>
             </select>
             <button className="start-button">Start</button>
@@ -77,7 +142,7 @@ class GameContainer extends React.Component {
               />
             </div>
             <form className="inputcontainer" onSubmit={this.handleSubmit}>
-              {/* <p>{this.state.challenge}</p> */}
+              {<p>{this.state.challenge}</p> }
               <input
                 className="typeinput"
                 type="text"

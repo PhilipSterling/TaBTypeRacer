@@ -19,6 +19,7 @@ export default class TestComponent extends React.Component {
             })
             for(let i = 0;i < coolArray.length; i++){
                 coolArray[i] = coolArray[i].replace(/_/ig, '');
+                coolArray[i] = coolArray[i].replace(/[“”]/ig, '\"')
                 if(coolArray[i].charAt(0) === " "){
                     coolArray[i] = coolArray[i].substr(1)
                 }
@@ -28,7 +29,8 @@ export default class TestComponent extends React.Component {
             // for(let i = 0;i < coolArray.length; i++){
             //     fetch("http://localhost:7777/challenges",{
             //         method: 'POST',
-            //         headers: {"Content-Type": "application/json"},
+            //         headers: {"Content-Type": "application/json",
+            //         Authorization: `Bearer ${localStorage.getItem('jwt')}`   },
             //         body: JSON.stringify({
             //             paragraph: coolArray[i],
             //             category: "Peter Pan"

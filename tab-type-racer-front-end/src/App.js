@@ -13,11 +13,13 @@ import {
   Link,
   NavLink
 } from "react-router-dom";
+import TestComponent from "./components/TestComponent";
 
 class App extends React.Component {
   render() {
     return (
       <div className="app bg">
+        {/* <TestComponent /> */}
         <Router>
           <Route path="/" component={HomePage} />
           <Route path="/login" component={Login} />
