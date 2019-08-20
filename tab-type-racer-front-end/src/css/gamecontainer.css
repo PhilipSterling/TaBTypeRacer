@@ -98,19 +98,18 @@ p{
   color: white;
 }
 
-
 .popup {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: fixed;
-  left: 30%;
-  top: 30%;
-  width: 40%;
-  height: 40%;
+  left: 25%;
+  top: 24%;
+  width: 50%;
+  height: 50%;
   background-color: #EEC643;
-  opacity: 0.95;
+  opacity: 1;
   border-radius: 5px;
   box-shadow: 5px 5px 5px grey;
   font-size: 25px;
@@ -118,6 +117,23 @@ p{
 
 .goodjob {
   width: 200px;
+}
+
+.newgame-button {
+  border: black solid 2px;
+  border-radius: 3px;
+  background-color: #eec643;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.newgame-button:hover {
+  transform: translateY(5%);
+}
+
+.font {
+  font-size: 25px;
+  color: #000000;
 }
 
 @media (max-width: 414px) {

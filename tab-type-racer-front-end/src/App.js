@@ -3,6 +3,7 @@ import Login from "./Login";
 import Signup from "./components/Signup";
 import HomePage from "./components/HomePage";
 import Profile from "./components/Profile";
+import HostRoom from "./components/HostRoom";
 import GamePageContainer from "./containers/GamePageContainer";
 import GameContainer from "./containers/GameContainer";
 import Nav from "./containers/Nav";
@@ -27,6 +28,7 @@ class App extends React.Component {
           <Route exact path="/game" component={GamePageContainer} />
           <Route path="/newgame" component={GameContainer} />
           <Route path="/profile" component={Profile} />
+          <Route path="/hostroom" component={HostRoom} />
         </Router>
       </div>
     );

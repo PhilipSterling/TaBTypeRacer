@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from './Nav';
 import "../css/gamecontainer.css";
+import { Route, Redirect} from 'react-router'
 
 class GameContainer extends React.Component {
   constructor () {
@@ -25,6 +26,8 @@ class GameContainer extends React.Component {
       currentWord: null,
       finishedWords: [],
       renderRemainingWords: "",
+      newGame: false
+
     }
   }
 
@@ -66,6 +69,7 @@ class GameContainer extends React.Component {
         })
         input = ""
         index = -1 
+
       }
       if(this.state.allWords[0] !== undefined){
       this.setState({
@@ -77,6 +81,7 @@ class GameContainer extends React.Component {
     }
     }
     if(this.state.allWords.length == 0){
+
       this.finishGame()
     }
   }
@@ -145,6 +150,12 @@ class GameContainer extends React.Component {
     //render paragraph based on the selected category, default paragraphs from all category
   }
 
+  handleNewgame = () => {
+    this.setState({
+      newGame: true
+    })
+  }
+
   render() {
     //percentage finished of the paragraph
     const width = (this.state.percentage - 7) + "%";
@@ -153,7 +164,6 @@ class GameContainer extends React.Component {
         <Nav user={this.props.location.state.user} />
 
         <div className="newgame-container2">
-
           <div className="category-container">
             <label>Category: </label>
             <select
@@ -176,6 +186,7 @@ class GameContainer extends React.Component {
             </div>
             <form className="inputcontainer" onSubmit={this.handleSubmit}>
               {<p><span style={{color: "green"}}>{this.state.finishedWords}</span><span style={{color: this.state.currWordCorrect}}>{this.state.currentWord}</span><span style={{color: "white"}}>{this.state.currentWord ? this.state.renderRemainingWords : this.state.challenge}</span></p> }
+
               <input
                 className="typeinput"
                 type="text"
@@ -193,9 +204,24 @@ class GameContainer extends React.Component {
           }}
           className="popup"
         >
-          <img className="goodjob" src="https://media.giphy.com/media/3o7abGQa0aRJUurpII/giphy.gif" />
-          <h3>Good Job {this.props.location.state.user.username}!</h3>
-          <h3>Words Per Minute: {this.state.wpm}</h3>
+          <img
+            className="goodjob"
+            src="https://media.giphy.com/media/3o7abGQa0aRJUurpII/giphy.gif"
+          />
+          <h3 className="font">Good Job {this.props.location.state.user.username}!</h3>
+          <h3 className="font">Words Per Minute: {this.state.wpm}</h3>
+          <button className="newgame-button" onClick={this.handleNewgame}>
+            New Game
+          </button>
+          {this.state.newGame ? (
+            <Redirect
+              to={{
+                pathname: "/game",
+                state: { user: this.props.location.state.user }
+              }}
+            />
+          ) : null}
+
         </div>
       </div>
     );
