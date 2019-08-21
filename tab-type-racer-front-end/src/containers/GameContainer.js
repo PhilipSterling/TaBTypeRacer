@@ -89,7 +89,7 @@ class GameContainer extends React.Component {
   finishGame = () => {
     let perRight = 100 - ((this.state.errorNumber / this.state.numAllWords) * 100)
     this.setState({input: "", challenge: ""})
-    fetch(`http://localhost:7777/games/${this.state.gameID}`, {
+    fetch(`https://polar-caverns-14212.herokuapp.com/games/${this.state.gameID}`, {
       method: 'PATCH',
       headers: {"Content-Type": "application/json",
       "Content-Type": "application/json",
@@ -110,7 +110,7 @@ class GameContainer extends React.Component {
 
   handleStartGame = () => {
     let tempID = 0;
-    fetch('http://localhost:7777/challenges/random', {
+    fetch('https://polar-caverns-14212.herokuapp.com/challenges/random', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,
@@ -130,7 +130,7 @@ class GameContainer extends React.Component {
       allWords: data.paragraph.split(" "),
       numAllWords: data.paragraph.split(" ").length,
     })
-      fetch('http://localhost:7777/games', {
+      fetch('https://polar-caverns-14212.herokuapp.com/games', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",

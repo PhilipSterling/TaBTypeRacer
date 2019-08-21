@@ -15,7 +15,7 @@ class Profile extends React.Component {
   }
 
   componentDidMount = () => {
-    fetch("http://localhost:7777/games",{
+    fetch("https://polar-caverns-14212.herokuapp.com/games",{
       method: "GET",
       headers: {
         "Content-Type": "application/json",

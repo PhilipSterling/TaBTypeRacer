@@ -4,7 +4,7 @@ export default class TestComponent extends React.Component {
     state={data: null}
     componentDidMount(){
         
-        fetch('PeterPan.txt')
+        fetch('Dracula.txt')
         .then(response => response.text())
         .then(text => {
             //text = text.replace(/\n/ig, '');
@@ -27,13 +27,13 @@ export default class TestComponent extends React.Component {
             console.log(coolArray)
             //ALREADY RUN - Dracula - Peter Pan
             // for(let i = 0;i < coolArray.length; i++){
-            //     fetch("http://localhost:7777/challenges",{
+            //     fetch("https://polar-caverns-14212.herokuapp.com/challenges",{
             //         method: 'POST',
             //         headers: {"Content-Type": "application/json",
             //         Authorization: `Bearer ${localStorage.getItem('jwt')}`   },
             //         body: JSON.stringify({
             //             paragraph: coolArray[i],
-            //             category: "Peter Pan"
+            //             category: "Dracula"
             //         })
             //     })
             //     .then(res => res.json())

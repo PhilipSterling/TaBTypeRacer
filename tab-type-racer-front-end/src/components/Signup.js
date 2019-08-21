@@ -17,7 +17,7 @@ class Signup extends React.Component {
     e.preventDefault();
     const name = e.target.name.value;
     const password = e.target.password.value;
-    fetch("http://localhost:7777/users", {
+    fetch("https://polar-caverns-14212.herokuapp.com/users", {
       method: "POST",
       headers: {
         Accept: "application/json",
