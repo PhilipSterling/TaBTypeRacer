@@ -80,7 +80,7 @@ class GameContainer extends React.Component {
       })
     }
     }
-    if(this.state.allWords.length == 0){
+    if(this.state.allWords.length == 0 && this.state.gameID != null){
 
       this.finishGame()
     }
